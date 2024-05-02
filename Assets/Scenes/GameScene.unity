@@ -1024,7 +1024,7 @@ MonoBehaviour:
   - m_Height: 1.39
     m_Radius: 4.87
   - m_Height: -0.01
-    m_Radius: 2.02
+    m_Radius: 2.82
   m_LegacyHeadingBias: 3.4028235e+38
   m_Rigs:
   - {fileID: 1201745840}
@@ -1565,6 +1565,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 1513480595}
   speed: 5
+  turnSmoothTime: 0.1
+  cam: {fileID: 330585546}
 --- !u!1 &1574465736
 GameObject:
   m_ObjectHideFlags: 0

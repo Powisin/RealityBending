@@ -9,9 +9,11 @@ public class PlayerController : MonoBehaviour
 
     public float speed = 5;
 
-    
+    public float turnSmoothTime = 0.1f;
+    float turnSmoothVelocity;
 
-    
+    public Transform cam;
+
     void Update()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
@@ -23,13 +25,15 @@ public class PlayerController : MonoBehaviour
         if (direction.magnitude >= 0.1f) 
         {
 
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
 
-            transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
 
+            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
+            transform.rotation = Quaternion.Euler(0f, angle, 0f); 
 
-            controller.Move(direction * speed * Time.deltaTime);
+            controller.Move(moveDir.normalized * speed * Time.deltaTime);
         }
 
         
