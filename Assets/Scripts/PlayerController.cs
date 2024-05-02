@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float _gravity;
     [SerializeField] private float _fallVelocity;
-
+    [SerializeField] private float _jumpForce;
 
     public float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
@@ -24,12 +24,14 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _gravity = 60f; //gravedad normal -9.81 aprox
+        _jumpForce = 15f;
     }
 
 
     void Update()
     {
         SetGravity();
+        Jump();
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
         
@@ -67,5 +69,14 @@ public class PlayerController : MonoBehaviour
             _fallVelocity -= _gravity * Time.deltaTime;
         }
         
+    }
+
+    private void Jump() 
+    {
+        if (controller.isGrounded && Input.GetKey(KeyCode.Space)) 
+        {
+            _fallVelocity = _jumpForce;
+        }
+
     }
 }
