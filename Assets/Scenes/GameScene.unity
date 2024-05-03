@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -512,7 +512,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 273829554}
-  m_LocalRotation: {x: 0.09428345, y: 0.47009185, z: -0.050589528, w: 0.8761079}
+  m_LocalRotation: {x: 0.094283454, y: 0.47009188, z: -0.050589528, w: 0.8761079}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -686,7 +686,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.09428348, y: 0.4700919, z: -0.050589535, w: 0.8761079}
+  m_LocalRotation: {x: 0.094283484, y: 0.47009194, z: -0.05058954, w: 0.8761079}
   m_LocalPosition: {x: -4.057888, y: 2.46, z: -2.6926653}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2906,9 +2906,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1513480596}
-  - component: {fileID: 1513480595}
   - component: {fileID: 1513480597}
   - component: {fileID: 1513480599}
+  - component: {fileID: 1513480601}
   - component: {fileID: 1513480600}
   m_Layer: 0
   m_Name: Player
@@ -2917,32 +2917,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!143 &1513480595
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1513480594}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1513480596
 Transform:
   m_ObjectHideFlags: 0
@@ -2971,7 +2945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f6741e9c519bda4bb0dc417c5480bae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 1513480595}
+  controller: {fileID: 0}
   speed: 5
   _gravity: -9.81
   _fallVelocity: 10
@@ -3020,6 +2994,33 @@ MonoBehaviour:
   - {fileID: 2090374888}
   - {fileID: 361900782}
   textoPapel: {fileID: 135384956}
+--- !u!54 &1513480601
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513480594}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1560832579
 GameObject:
   m_ObjectHideFlags: 0
