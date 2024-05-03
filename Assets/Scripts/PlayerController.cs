@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        _gravity = 60f; //gravedad normal -9.81 aprox
+        _gravity = 9.81f; //gravedad normal -9.81 aprox
         _jumpForce = 15f;
     }
 
