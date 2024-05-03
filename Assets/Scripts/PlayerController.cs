@@ -5,83 +5,102 @@ using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+
 public class PlayerController : MonoBehaviour
 {
-    public CharacterController controller;
 
-    public float speed = 5;
+    private Rigidbody _rb;
 
-    [SerializeField] private float _gravity;
-    [SerializeField] private float _fallVelocity;
-    [SerializeField] private float _jumpForce;
+    #region Camera
+    private Camera _cam;
+    private CameraMovement _cm;
+    private Vector3 camFwd;
+    #endregion
+
+    #region Movement
+    [Range(1.0f, 10.0f)]
+    public float walk_speed;
+    [Range(1.0f, 10.0f)]
+    public float backwards_walk_speed;
+    [Range(1.0f, 10.0f)]
+    public float strafe_speed;
+
+    [Range(0.1f, 1.5f)]
+    public float rotation_speed;
+
+    [Range(2.0f, 10.0f)]
+    public float jump_force;
+    #endregion
+
+    /*#region Animations
+    private MyTPCharacter tpc;
+    private bool walking = false;
+    private bool strafeLeft = false;
+    private bool strafeRight = false;
+    private bool backwards = false;
+    private bool jump = false;
+    #endregion*/
 
     [SerializeField] int fallLimit;
-
-    public float turnSmoothTime = 0.1f;
-    float turnSmoothVelocity;
-
-    public Transform cam;
-
-
     private void Awake()
     {
-        _gravity = 9.81f; //gravedad normal -9.81 aprox
-        _jumpForce = 15f;
+        //tpc = FindObjectOfType<MyTPCharacter>();
+        _cm = GetComponent<CameraMovement>();
+        _cam = _cm.GetCamera();
+        _rb = GetComponent<Rigidbody>();
     }
 
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    private void FixedUpdate()
+    {
+        //gets the inputs
+        float h = Input.GetAxis("Horizontal");
+        float v = Input.GetAxis("Vertical");
+      //jump = Input.GetButtonDown("Jump");
+
+        //calculate camera relative directions to move:
+        camFwd = Vector3.Scale(_cam.transform.forward, new Vector3(1, 1, 1)).normalized;
+        Vector3 camFlatFwd = Vector3.Scale(_cam.transform.forward, new Vector3(1, 0, 1)).normalized;
+        Vector3 flatRight = new Vector3(_cam.transform.right.x, 0, _cam.transform.right.z);
+
+        Vector3 m_CharForward = Vector3.Scale(camFlatFwd, new Vector3(1, 0, 1)).normalized;
+        Vector3 m_CharRight = Vector3 .Scale(flatRight, new Vector3(1, 0, 1)).normalized;
+
+        //draws a ray to show the direction the player is aiming at
+        Debug.DrawLine(transform.position, transform.position + camFwd * 5f, Color.red);
+
+        //move the pplayer (movement will be slightly different depending on the camera type)
+        float w_speed;
+        Vector3 move = Vector3.zero;
+        if (_cm.type == CameraMovement.CAMERA_TYPE.FREE_LOOK)
+        {
+            w_speed = walk_speed;
+            move = v * m_CharForward * w_speed + h * m_CharRight * walk_speed;
+            _cam.transform.position += move * Time.deltaTime;
+
+            //rotate body
+          //tpc.transform.position = Quaternion.LookRotation(Vector3.RotateTowards(tpc.transform.forward, move, rotation_speed, 0.0f));
+        }
+        else if (_cm.type == CameraMovement.CAMERA_TYPE.LOCKED)
+        {
+            w_speed = (v > 0) ? walk_speed : backwards_walk_speed;
+            move = v * m_CharForward * w_speed + h * m_CharRight * strafe_speed;
+        }
+    }
 
     void Update()
     {
         FallRespawn();
-        SetGravity();
-        Jump();
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
+       
         
-
-        Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
-
-        if (direction.magnitude >= 0.1f) 
-        {
-
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
-
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-
-            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-
-            transform.rotation = Quaternion.Euler(0f, angle, 0f);
-
-            
-
-            controller.Move(moveDir.normalized * speed * Time.deltaTime);
-
-            
-        }
 
         
     }
-    public void SetGravity() 
-    {
-        if (controller.isGrounded) 
-        {
-            _fallVelocity = -_gravity * Time.deltaTime;
-        }
-        else 
-        {
-            _fallVelocity -= _gravity * Time.deltaTime;
-        }
-        
-    }
-
-    private void Jump() 
-    {
-        if (controller.isGrounded && Input.GetKey(KeyCode.Space)) 
-        {
-            _fallVelocity = _jumpForce;
-        }
-
-    }
+   
 
     void FallRespawn()
     {
