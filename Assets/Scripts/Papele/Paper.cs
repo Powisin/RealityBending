@@ -25,35 +25,38 @@ public class Paper : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if ( other.CompareTag("Paper"))
+        if (Input.GetKeyDown(KeyCode.E)) 
         {
-            //PressE();
+            if (other.CompareTag("Paper"))
+            {
+                //PressE();
 
-            papel1[0].SetActive(true);
-            
-        }
-        if (other.CompareTag("Paper1"))
-        {
-            //PressE();
+                papel1[0].SetActive(true);
 
-            papel1[1].SetActive(true);
+            }
+            if (other.CompareTag("Paper1"))
+            {
+                //PressE();
 
-        }
-        if (other.CompareTag("Paper2"))
-        {
-            //PressE();
+                papel1[1].SetActive(true);
 
-            papel1[2].SetActive(true);
+            }
+            if (other.CompareTag("Paper2"))
+            {
+                //PressE();
 
-        }
-        if (other.CompareTag("Paper3"))
-        {
-            //PressE();
+                papel1[2].SetActive(true);
 
-            papel1[3].SetActive(true);
+            }
+            if (other.CompareTag("Paper3"))
+            {
+                //PressE();
 
+                papel1[3].SetActive(true);
+
+            }
         }
     }
 

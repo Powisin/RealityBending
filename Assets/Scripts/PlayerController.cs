@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _fallVelocity;
     [SerializeField] private float _jumpForce;
 
+    [SerializeField] int fallLimit;
+
     public float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
 
@@ -30,6 +32,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        FallRespawn();
         SetGravity();
         Jump();
         float horizontal = Input.GetAxisRaw("Horizontal");
@@ -78,5 +81,13 @@ public class PlayerController : MonoBehaviour
             _fallVelocity = _jumpForce;
         }
 
+    }
+
+    void FallRespawn()
+    {
+        if (transform.position.y < fallLimit)
+        {
+            Destroy(gameObject);
+        }
     }
 }

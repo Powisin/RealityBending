@@ -2762,6 +2762,7 @@ MonoBehaviour:
   _gravity: -9.81
   _fallVelocity: 10
   _jumpForce: 0
+  fallLimit: -61
   turnSmoothTime: 0.1
   cam: {fileID: 330585546}
 --- !u!136 &1513480599
@@ -2779,7 +2780,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
