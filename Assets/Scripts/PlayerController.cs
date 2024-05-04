@@ -32,14 +32,14 @@ public class PlayerController : MonoBehaviour
     public float jump_force;
     #endregion
 
-    /*#region Animations
-    private MyTPCharacter tpc;
+    #region Animations
+    //private MyTPCharacter tpc;
     private bool walking = false;
     private bool strafeLeft = false;
     private bool strafeRight = false;
     private bool backwards = false;
     private bool jump = false;
-    #endregion*/
+    #endregion
 
     [SerializeField] int fallLimit;
     private void Awake()
@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
         //gets the inputs
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
-      //jump = Input.GetButtonDown("Jump");
+        jump = Input.GetButtonDown("Jump");
 
         //calculate camera relative directions to move:
         camFwd = Vector3.Scale(_cam.transform.forward, new Vector3(1, 1, 1)).normalized;
@@ -90,15 +90,43 @@ public class PlayerController : MonoBehaviour
             w_speed = (v > 0) ? walk_speed : backwards_walk_speed;
             move = v * m_CharForward * w_speed + h * m_CharRight * strafe_speed;
         }
+
+        transform.position += move * Time.deltaTime; //move the actual player
+
+        //jump
+        if (jump) 
+        {
+            _rb.AddForce(Vector3.up * jump_force, ForceMode.Impulse);
+        }
+
+        //Update animations flangs
+        if (_cm.type == CameraMovement.CAMERA_TYPE.FREE_LOOK)
+        {
+            walking = (h != 0 || v != 0);
+        }
+        else if (_cm.type == CameraMovement.CAMERA_TYPE.LOCKED) 
+        {
+            walking = (v > 0 && h == 0);
+            backwards = (v < 0 && h == 0);
+            strafeLeft = (h < 0);
+            strafeRight = (h > 0);
+        }
     }
 
     void Update()
     {
         FallRespawn();
-       
-        
 
+        PlayerStateMachine();
         
+        //animations
+        /*tpc.GetFullBodyAnimator().SetBool("walking", walking);
+        tpc.GetFullBodyAnimator().SetBool("sttrafeLeft", strafeLeft);
+        tpc.GetFullBodyAnimator().SetBool("strafeRight", strafeRight);
+        tpc.GetFullBodyAnimator().SetBool("backwards", backwards);
+        tpc.GetFullBodyAnimator().SetBool("jump", jump);*/
+
+
     }
    
 
@@ -109,4 +137,7 @@ public class PlayerController : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    void PlayerStateMachine() 
+    { }
 }
