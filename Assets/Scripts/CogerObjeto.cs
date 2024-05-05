@@ -11,9 +11,9 @@ public class CogerObjeto : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (pickedObject = null)
+        /*if (pickedObject = null)
         {
-            if (Input.GetKeyDown(KeyCode.Q)) 
+            if (Input.GetKeyUp(KeyCode.E)) 
             {
                 pickedObject.GetComponent<Rigidbody>().useGravity = true;
 
@@ -24,7 +24,7 @@ public class CogerObjeto : MonoBehaviour
                 pickedObject = null;
             }
 
-        }
+        }*/
         
     }
 
@@ -44,6 +44,18 @@ public class CogerObjeto : MonoBehaviour
 
                 pickedObject = other.gameObject;
             }
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                pickedObject.GetComponent<Rigidbody>().useGravity = true;
+
+                pickedObject.GetComponent<Rigidbody>().isKinematic = false;
+
+                pickedObject.gameObject.transform.SetParent(null);
+
+                pickedObject = null;
+            }
+
+
         }
     }
 }
