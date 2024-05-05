@@ -19,10 +19,16 @@ public class Ventilador : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        /*float forceMafnitude = Random.Range(minForce, maxForce);
+
+        Vector3 force = Vector3.Normalize(forceDirectionVector) * forceMafnitude;
+
+        objectToAddForce.GetComponent<Rigidbody>().AddForce(force);
+
+        Debug.Log("Si sale esto no entiedo pues");*/
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
         {
