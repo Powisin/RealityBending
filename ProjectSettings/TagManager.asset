@@ -8,6 +8,7 @@ TagManager:
   - Paper1
   - Paper2
   - Paper3
+  - Objeto
   layers:
   - Default
   - TransparentFX
