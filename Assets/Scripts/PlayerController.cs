@@ -41,6 +41,10 @@ public class PlayerController : MonoBehaviour
     private bool jump = false;
     #endregion
 
+    [Header("Triger Pared Para pasar de fase")]
+    [SerializeField] GameObject pared;
+    [SerializeField] GameObject[] triggerPhase;
+
     [SerializeField] int fallLimit;
     private void Awake()
     {
@@ -140,4 +144,10 @@ public class PlayerController : MonoBehaviour
 
     void PlayerStateMachine() 
     { }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Prueba1")){ triggerPhase[0].SetActive(true);}
+        if (other.gameObject.CompareTag("BreakingDoor1")){Destroy(pared);}
+    }
 }
