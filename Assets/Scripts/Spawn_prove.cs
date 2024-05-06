@@ -68,7 +68,7 @@ public class Spawn_prove : MonoBehaviour
 
     void SpawnEnemy(int wave)
     {
-        int spawnPos = Random.Range(0, 6);
+        int spawnPos = Random.Range(0, 5);
         if (wave == 1)
         {
             enemyTipe = Random.Range(0, 1);
@@ -77,4 +77,6 @@ public class Spawn_prove : MonoBehaviour
         Instantiate(enemyPrefab/*[enemyTipe]*/, spawnPosition[spawnPos].transform.position, spawnPosition[spawnPos].transform.rotation);
         enemiesSpawned +=1;
     }
+
+    
 }
