@@ -33,7 +33,7 @@ public class Paper : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        textoPapel.SetActive(true);
+        
 
         if (Input.GetKeyDown(KeyCode.E)) 
         {
@@ -67,6 +67,7 @@ public class Paper : MonoBehaviour
 
             }
         }
+        textoPapel.SetActive(true);
     }
 
     private void OnTriggerExit(Collider other)
