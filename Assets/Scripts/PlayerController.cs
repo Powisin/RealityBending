@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Animations
-    //private MyTPCharacter tpc;
+    
     private bool walking = false;
     private bool strafeLeft = false;
     private bool strafeRight = false;
@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] int fallLimit;
     private void Awake()
     {
-        //tpc = FindObjectOfType<MyTPCharacter>();
+        
         _cm = GetComponent<CameraMovement>();
         _cam = _cm.GetCamera();
         _rb = GetComponent<Rigidbody>();

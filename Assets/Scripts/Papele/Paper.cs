@@ -11,16 +11,18 @@ public class Paper : MonoBehaviour
 
     [SerializeField] GameObject[] papel1;
     [SerializeField] GameObject textoPapel;
+    
+
 
     // Start is called before the first frame update
     void Start()
     {
+        textoPapel.SetActive(false);
         papel1[0].SetActive(false);
         papel1[1].SetActive(false);
         papel1[2].SetActive(false);
         papel1[3].SetActive(false);
         
-       
     }
 
     // Update is called once per frame
@@ -32,6 +34,7 @@ public class Paper : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         textoPapel.SetActive(true);
+
         if (Input.GetKeyDown(KeyCode.E)) 
         {
             
