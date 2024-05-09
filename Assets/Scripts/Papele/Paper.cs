@@ -66,8 +66,9 @@ public class Paper : MonoBehaviour
                 papel1[3].SetActive(true);
 
             }
+            textoPapel.SetActive(true);
         }
-        textoPapel.SetActive(true);
+        //textoPapel.SetActive(true);
     }
 
     private void OnTriggerExit(Collider other)
