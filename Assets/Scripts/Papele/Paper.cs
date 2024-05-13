@@ -9,19 +9,15 @@ using Input = UnityEngine.Input;
 public class Paper : MonoBehaviour
 {
 
-    [SerializeField] GameObject[] papel1;
+    [SerializeField] GameObject[] papel;
     [SerializeField] GameObject textoPapel;
+    [SerializeField] GameObject[] recuerdos;
     
 
 
     // Start is called before the first frame update
     void Start()
     {
-        textoPapel.SetActive(false);
-        papel1[0].SetActive(false);
-        papel1[1].SetActive(false);
-        papel1[2].SetActive(false);
-        papel1[3].SetActive(false);
         
     }
 
@@ -37,33 +33,34 @@ public class Paper : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E)) 
         {
-            
+            Cursor.lockState = CursorLockMode.None;
+
             if (other.CompareTag("Paper"))
             {
                 //PressE();
                 
-                papel1[0].SetActive(true);
+                papel[0].SetActive(true);
 
             }
             if (other.CompareTag("Paper1"))
             {
                 //PressE();
                 
-                papel1[1].SetActive(true);
+                papel[1].SetActive(true);
 
             }
             if (other.CompareTag("Paper2"))
             {
                 //PressE();
                 
-                papel1[2].SetActive(true);
+                papel[2].SetActive(true);
 
             }
             if (other.CompareTag("Paper3"))
             {
                 //PressE();
                 
-                papel1[3].SetActive(true);
+                papel[3].SetActive(true);
 
             }
             textoPapel.SetActive(true);
@@ -76,26 +73,25 @@ public class Paper : MonoBehaviour
         textoPapel.SetActive(false);
         if (other.CompareTag("Paper")) 
         {
-            papel1[0].SetActive(false);
+            papel[0].SetActive(false);
             
 
         }
         if (other.CompareTag("Paper1"))
         {
-            papel1[1].SetActive(false);
+            papel[1].SetActive(false);
             
 
         }
         if (other.CompareTag("Paper2"))
         {
-            papel1[2].SetActive(false);
+            papel[2].SetActive(false);
             
 
         }
         if (other.CompareTag("Paper3"))
         {
-            papel1[3].SetActive(false);
-            
+            papel[3].SetActive(false);
 
         }
      
@@ -109,6 +105,4 @@ public class Paper : MonoBehaviour
 
             Debug.Log("h");
         }*/
-
-
 }
