@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 {
 
     private Rigidbody _rb;
+    private Animator anim;
 
     #region Camera
     private Camera _cam;
@@ -31,7 +32,7 @@ public class PlayerController : MonoBehaviour
     [Range(2.0f, 10.0f)]
     public float jump_force;
     #endregion
-
+    
     #region Animations
     
     private bool walking = false;
@@ -52,6 +53,7 @@ public class PlayerController : MonoBehaviour
         _cm = GetComponent<CameraMovement>();
         _cam = _cm.GetCamera();
         _rb = GetComponent<Rigidbody>();
+        anim = GetComponent<Animator>();
     }
 
     private void Start()
@@ -77,7 +79,7 @@ public class PlayerController : MonoBehaviour
         //draws a ray to show the direction the player is aiming at
         Debug.DrawLine(transform.position, transform.position + camFwd * 5f, Color.red);
 
-        //move the pplayer (movement will be slightly different depending on the camera type)
+        //move the player (movement will be slightly different depending on the camera type)
         float w_speed;
         Vector3 move = Vector3.zero;
         if (_cm.type == CameraMovement.CAMERA_TYPE.FREE_LOOK)
@@ -98,11 +100,12 @@ public class PlayerController : MonoBehaviour
         transform.position += move * Time.deltaTime; //move the actual player
 
         //jump
-        if (jump) 
+        if (jump)
         {
             _rb.AddForce(Vector3.up * jump_force, ForceMode.Impulse);
+            anim.SetBool("IsJumping", true);
         }
-
+        else { anim.SetBool("IsJumping", false); }
         //Update animations flangs
         if (_cm.type == CameraMovement.CAMERA_TYPE.FREE_LOOK)
         {
