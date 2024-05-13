@@ -11,6 +11,8 @@ TagManager:
   - Objeto
   - Prueba1
   - BreakingDoor1
+  - BreakingDoor2
+  - BreakingDoor0
   layers:
   - Default
   - TransparentFX

@@ -43,8 +43,9 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     [Header("Triger Pared Para pasar de fase")]
-    [SerializeField] GameObject pared;
+    [SerializeField] GameObject[] pared;
     [SerializeField] GameObject[] triggerPhase;
+    [SerializeField] GameObject spawnPreove;
 
     [SerializeField] int fallLimit;
     private void Awake()
@@ -150,7 +151,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Prueba1")){ triggerPhase[0].SetActive(true);}
-        if (other.gameObject.CompareTag("BreakingDoor1")){Destroy(pared);}
+        if (other.gameObject.CompareTag("BreakingDoor0")) { Destroy(pared[0]); }
+        if (other.gameObject.CompareTag("Prueba1")){ triggerPhase[0].SetActive(true); }
+        if (other.gameObject.CompareTag("BreakingDoor1")) { Destroy(pared[1]); spawnPreove.SetActive(true); }
+        if (other.gameObject.CompareTag("Prueba2")) { triggerPhase[1].SetActive(true); spawnPreove.SetActive(false); }
+        if (other.gameObject.CompareTag("BreakingDoor2")) { Destroy(pared[2]); }
     }
 }
