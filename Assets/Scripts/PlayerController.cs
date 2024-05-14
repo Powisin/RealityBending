@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     [Header("Triger Pared Para pasar de fase")]
-    [SerializeField] GameObject pared;
+    [SerializeField] GameObject[] pared;
     [SerializeField] GameObject[] triggerPhase;
 
     [SerializeField] int fallLimit;
@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour
         if (moveInput.x != 0 || moveInput.z != 0) { anim.SetBool("IsWalking", true); }
         else { anim.SetBool("IsWalking", false); }
 
-        FallRespawn();
+        //FallRespawn();
 
         PlayerStateMachine();
 
@@ -159,20 +159,23 @@ public class PlayerController : MonoBehaviour
     
    
 
-    void FallRespawn()
+    /*void FallRespawn()
     {
         if (transform.position.y < fallLimit)
         {
             Destroy(gameObject);
         }
-    }
+    }*/
 
     void PlayerStateMachine() 
     { }
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.CompareTag("BreakingDoor0")) { Destroy(pared[0]); }
         if (other.gameObject.CompareTag("Prueba1")){ triggerPhase[0].SetActive(true);}
-        if (other.gameObject.CompareTag("BreakingDoor1")){Destroy(pared);}
+        if (other.gameObject.CompareTag("BreakingDoor1")){Destroy(pared[1]);}
+        if (other.gameObject.CompareTag("Prueba2")) { triggerPhase[1].SetActive(true); }
+        if (other.gameObject.CompareTag("BreakingDoor2")) { Destroy(pared[2]); }
     }
 }

@@ -9,10 +9,11 @@ TagManager:
   - Paper2
   - Paper3
   - Objeto
-  - Prueba1
   - BreakingDoor1
   - BreakingDoor2
   - BreakingDoor0
+  - Prueba1
+  - Prueba2
   layers:
   - Default
   - TransparentFX
