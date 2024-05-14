@@ -11,10 +11,6 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody _rb;
     private Animator anim;
-    private Vector3 moveInput;
-
-    [Header("Editor References")]
-    [SerializeField] GameObject playerModel;
 
     #region Camera
     private Camera _cam;
@@ -23,7 +19,6 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Movement
-    [Header("Movement Stats")]
     [Range(1.0f, 10.0f)]
     public float walk_speed;
     [Range(1.0f, 10.0f)]
@@ -36,13 +31,6 @@ public class PlayerController : MonoBehaviour
 
     [Range(2.0f, 10.0f)]
     public float jump_force;
-
-    [Header("GroundCheck Configuration")]
-    [SerializeField] GameObject groundCheck;
-    [SerializeField] float groundCheckRange;
-    [SerializeField] LayerMask groundLayer;
-    [SerializeField] bool isGrounded;
-    private RaycastHit groundHit;
     #endregion
     
     #region Animations
@@ -66,7 +54,7 @@ public class PlayerController : MonoBehaviour
         _cm = GetComponent<CameraMovement>();
         _cam = _cm.GetCamera();
         _rb = GetComponent<Rigidbody>();
-        anim = playerModel.GetComponent<Animator>();
+        anim = GetComponent<Animator>();
     }
 
     private void Start()
@@ -74,34 +62,12 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    void Update()
-    {
-        moveInput.x = Input.GetAxis("Horizontal");
-        moveInput.z = Input.GetAxis("Vertical");
-        jump = Input.GetButtonDown("Jump");
-        isGrounded = Physics.Raycast(groundCheck.transform.position, Vector3.down, groundCheckRange, groundLayer);
-        anim.SetBool("IsJumping", !isGrounded);
-        if (moveInput.x != 0 || moveInput.z != 0) { anim.SetBool("IsWalking", true); }
-        else { anim.SetBool("IsWalking", false); }
-
-        FallRespawn();
-
-        PlayerStateMachine();
-
-        //animations
-        /*tpc.GetFullBodyAnimator().SetBool("walking", walking);
-        tpc.GetFullBodyAnimator().SetBool("sttrafeLeft", strafeLeft);
-        tpc.GetFullBodyAnimator().SetBool("strafeRight", strafeRight);
-        tpc.GetFullBodyAnimator().SetBool("backwards", backwards);
-        tpc.GetFullBodyAnimator().SetBool("jump", jump);*/
-
-
-    }
-
     private void FixedUpdate()
     {
-        Jump();
-        
+        //gets the inputs
+        float h = Input.GetAxis("Horizontal");
+        float v = Input.GetAxis("Vertical");
+        jump = Input.GetButtonDown("Jump");
 
         //calculate camera relative directions to move:
         camFwd = Vector3.Scale(_cam.transform.forward, new Vector3(1, 1, 1)).normalized;
@@ -120,7 +86,7 @@ public class PlayerController : MonoBehaviour
         if (_cm.type == CameraMovement.CAMERA_TYPE.FREE_LOOK)
         {
             w_speed = walk_speed;
-            move = moveInput.z * m_CharForward * w_speed + moveInput.x * m_CharRight * walk_speed;
+            move = v * m_CharForward * w_speed + h * m_CharRight * walk_speed;
             _cam.transform.position += move * Time.deltaTime;
 
             //rotate body
@@ -128,36 +94,48 @@ public class PlayerController : MonoBehaviour
         }
         else if (_cm.type == CameraMovement.CAMERA_TYPE.LOCKED)
         {
-            w_speed = (moveInput.z > 0) ? walk_speed : backwards_walk_speed;
-            move = moveInput.z * m_CharForward * w_speed + moveInput.x * m_CharRight * strafe_speed;
-            
+            w_speed = (v > 0) ? walk_speed : backwards_walk_speed;
+            move = v * m_CharForward * w_speed + h * m_CharRight * strafe_speed;
         }
+
         transform.position += move * Time.deltaTime; //move the actual player
 
-        
+        //jump
+        if (jump)
+        {
+            _rb.AddForce(Vector3.up * jump_force, ForceMode.Impulse);
+            anim.SetBool("IsJumping", true);
+        }
+        else { anim.SetBool("IsJumping", false); }
         //Update animations flangs
         if (_cm.type == CameraMovement.CAMERA_TYPE.FREE_LOOK)
         {
-            walking = (moveInput.x != 0 || moveInput.z != 0);
+            walking = (h != 0 || v != 0);
         }
         else if (_cm.type == CameraMovement.CAMERA_TYPE.LOCKED) 
         {
-            walking = (moveInput.z > 0 && moveInput.x == 0);
-            backwards = (moveInput.z < 0 && moveInput.x == 0);
-            strafeLeft = (moveInput.x < 0);
-            strafeRight = (moveInput.x > 0);
+            walking = (v > 0 && h == 0);
+            backwards = (v < 0 && h == 0);
+            strafeLeft = (h < 0);
+            strafeRight = (h > 0);
         }
     }
 
-    void Jump()
+    void Update()
     {
-        if (jump && isGrounded)
-        {
-            _rb.AddForce(Vector3.up * jump_force, ForceMode.Impulse);
-        }
-    }
+        FallRespawn();
 
-    
+        PlayerStateMachine();
+        
+        //animations
+        /*tpc.GetFullBodyAnimator().SetBool("walking", walking);
+        tpc.GetFullBodyAnimator().SetBool("sttrafeLeft", strafeLeft);
+        tpc.GetFullBodyAnimator().SetBool("strafeRight", strafeRight);
+        tpc.GetFullBodyAnimator().SetBool("backwards", backwards);
+        tpc.GetFullBodyAnimator().SetBool("jump", jump);*/
+
+
+    }
    
 
     void FallRespawn()
