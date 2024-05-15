@@ -57,7 +57,7 @@ public class Spawn_prove : MonoBehaviour
             SpawnEnemy(wave);
         }
         yield return new WaitForSeconds(6);
-        enemiesSpawned--;
+        enemiesSpawned = 0;
         wave += 1;
         waveCount += 1;
         spawning = false;
