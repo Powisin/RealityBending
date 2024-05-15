@@ -4,7 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Paper
   - Paper1
   - Paper2
   - Paper3
@@ -14,6 +13,11 @@ TagManager:
   - BreakingDoor0
   - Prueba1
   - Prueba2
+  - Paper0
+  - Paper5
+  - Paper
+  - Enemy
+  - Screamer
   layers:
   - Default
   - TransparentFX

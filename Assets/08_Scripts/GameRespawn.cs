@@ -31,6 +31,14 @@ public class GameRespawn : MonoBehaviour
             checkPointCurrent = checkPoints[1];
             checkPointsCanvas.SetActive(true);
         }
+        if (other.CompareTag("Enemy"))
+        {
+            transform.position = new Vector3(checkPointCurrent.transform.position.x, checkPointCurrent.transform.position.y, checkPointCurrent.transform.position.z);
+        }
+        if (other.CompareTag("Screamer"))
+        {
+            transform.position = new Vector3(checkPointCurrent.transform.position.x, checkPointCurrent.transform.position.y, checkPointCurrent.transform.position.z);
+        }
     }
 
     public void OnTriggerExit(Collider other)

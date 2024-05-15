@@ -10,8 +10,6 @@ public class Paper : MonoBehaviour
 {
 
     [SerializeField] GameObject[] papel;
-    [SerializeField] GameObject textoPapel;
-    [SerializeField] GameObject[] recuerdos;
     
 
 
@@ -33,9 +31,8 @@ public class Paper : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E)) 
         {
-            Cursor.lockState = CursorLockMode.None;
 
-            if (other.CompareTag("Paper"))
+            if (other.CompareTag("Paper0"))
             {
                 //PressE();
                 
@@ -63,15 +60,25 @@ public class Paper : MonoBehaviour
                 papel[3].SetActive(true);
 
             }
-            textoPapel.SetActive(true);
+            if (other.CompareTag("Prueba1"))
+            {
+                papel[4].SetActive(true);
+            }
+            if (other.CompareTag("Prueba2"))
+            {
+                papel[5].SetActive(true);
+            }
+            if (other.CompareTag("Paper5"))
+            {
+                papel[6].SetActive(true);
+            }
         }
         //textoPapel.SetActive(true);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        textoPapel.SetActive(false);
-        if (other.CompareTag("Paper")) 
+        if (other.CompareTag("Paper0")) 
         {
             papel[0].SetActive(false);
             
@@ -94,7 +101,19 @@ public class Paper : MonoBehaviour
             papel[3].SetActive(false);
 
         }
-     
+        if (other.CompareTag("Prueba1"))
+        {
+            papel[4].SetActive(false);
+        }
+        if (other.CompareTag("Prueba2"))
+        {
+            papel[5].SetActive(false);
+        }
+        if (other.CompareTag("Paper5"))
+        {
+            papel[6].SetActive(false);
+        }
+
     }
 
     /*private void PressE()
