@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
         {
             exitButton.onClick.Invoke();
         }
+        
     }
 
     public void OnApplicationQuit()
