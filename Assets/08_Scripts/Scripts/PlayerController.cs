@@ -179,6 +179,6 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("BreakingDoor1")){Destroy(pared[1]);}
         if (other.gameObject.CompareTag("Prueba2")) { triggerPhase[2].SetActive(true); }
         if (other.gameObject.CompareTag("BreakingDoor2")) { Destroy(pared[2]); }
-        if (other.gameObject.CompareTag("Video")) { videoBoss.SetActive(true); }
+        if (other.gameObject.CompareTag("Video")) { videoBoss.SetActive(true); Cursor.lockState = CursorLockMode.None;}
     }
 }
