@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject[] recuerdos;
     public Button exitButton;
+    [SerializeField] GameObject videoBoss;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +37,16 @@ public class GameManager : MonoBehaviour
     public void NextScene(string nombre)
     {
         SceneManager.LoadScene(nombre); 
+    }
+
+    public void CerrarScreamer()
+    {
+        GetComponent<GameRespawn>().Scream.SetActive(false);
+    }
+
+    public void CerrarVideoBoss()
+    {
+        videoBoss.SetActive(false);
     }
 
    /* public void QuitScene()

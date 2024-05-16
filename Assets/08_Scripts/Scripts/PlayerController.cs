@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Editor References")]
     [SerializeField] GameObject playerModel;
+    [SerializeField] GameObject videoBoss;
 
     #region Camera
     private Camera _cam;
@@ -34,7 +35,7 @@ public class PlayerController : MonoBehaviour
     [Range(0.1f, 1.5f)]
     public float rotation_speed;
 
-    [Range(2.0f, 5.0f)]
+    [Range(2.0f, 8.0f)]
     public float jump_force;
 
     [Header("GroundCheck Configuration")]
@@ -178,5 +179,6 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("BreakingDoor1")){Destroy(pared[1]);}
         if (other.gameObject.CompareTag("Prueba2")) { triggerPhase[2].SetActive(true); }
         if (other.gameObject.CompareTag("BreakingDoor2")) { Destroy(pared[2]); }
+        if (other.gameObject.CompareTag("Video")) { videoBoss.SetActive(true); }
     }
 }

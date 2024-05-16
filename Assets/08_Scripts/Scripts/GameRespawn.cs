@@ -8,6 +8,7 @@ public class GameRespawn : MonoBehaviour
     public float threshold;
     [SerializeField] GameObject[] checkPoints;
     [SerializeField] GameObject checkPointsCanvas;
+    public GameObject Scream;
     private GameObject checkPointCurrent;
 
 
@@ -37,9 +38,12 @@ public class GameRespawn : MonoBehaviour
         }
         if (other.CompareTag("Screamer"))
         {
+            Scream.SetActive(true);
             transform.position = new Vector3(checkPointCurrent.transform.position.x, checkPointCurrent.transform.position.y, checkPointCurrent.transform.position.z);
+            Cursor.lockState = CursorLockMode.None;
         }
     }
+    
 
     public void OnTriggerExit(Collider other)
     {

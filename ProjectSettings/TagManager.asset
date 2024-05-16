@@ -18,6 +18,7 @@ TagManager:
   - Paper
   - Enemy
   - Screamer
+  - Video
   layers:
   - Default
   - TransparentFX
