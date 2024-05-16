@@ -13,15 +13,11 @@ public class GameManager : MonoBehaviour
     [Header("Eleccione")]
     [SerializeField] GameObject[] pregunta;
     [SerializeField] int points;
-    [SerializeField] bool completeScene;
-    [SerializeField] bool needScene;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        needScene = false;
-        completeScene = false;
         exitButton = exitButton.GetComponent<Button>();
         points = 0;
     }
@@ -65,107 +61,109 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }*/
 
-    public void PreguntaMal(int i)
+    public void PreguntaMal1(int i)
     {
         i = 0;
-        if (pregunta[i] == pregunta[0] && completeScene == false)
+        if (pregunta[i] == pregunta[0])
         {
             points = points + 10;
             pregunta[1].SetActive(true);
             pregunta[0].SetActive(false);
-            i++;
         }
-        if (pregunta[i] == pregunta[1] && completeScene == false)
+    }
+    public void PreguntaMal2(int i)
+    {
+        i = 1;
+        if (pregunta[i] == pregunta[1])
         {
             points = points + 10;
             pregunta[2].SetActive(true);
             pregunta[1].SetActive(false);
-            i++;
         }
-        if (pregunta[i] == pregunta[2] && completeScene == false)
+    }
+    public void PreguntaMal3(int i)
+    {
+        i = 2;
+        if (pregunta[i] == pregunta[2])
         {
             points = points + 10;
             pregunta[3].SetActive(true);
             pregunta[2].SetActive(false);
-            i++;
-        }
-        if (pregunta[i] = pregunta[3] )
-        {
-            /*if (points < 40)
-            {
-                SceneManager.LoadScene(4);
-            }*/
         }
     }
-
-    public void PreguntaAñañin(int q)
+    public void Preguntaañañin1(int i)
     {
-        q = 0;
-        if(needScene == false)
+        i = 0;
+        if (pregunta[i] == pregunta[0])
         {
-            if (pregunta[q] == pregunta[0] && completeScene == true)
-            {
-                points = points + 15;
-                pregunta[1].SetActive(true);
-                pregunta[0].SetActive(false);
-                q++;
-            }
-            completeScene = true;
+            points = points + 15;
+            pregunta[1].SetActive(true);
+            pregunta[0].SetActive(false);
         }
-        
-        if (pregunta[q] == pregunta[1] && completeScene == false)
+    }
+    public void PreguntaAñañin2(int i)
+    {
+        i = 1;
+        if (pregunta[i] == pregunta[1])
         {
             points = points + 15;
             pregunta[2].SetActive(true);
             pregunta[1].SetActive(false);
-            q++;
         }
-        if (pregunta[q] == pregunta[2] && completeScene == false)
+    }
+    public void PreguntaAñañin3(int i)
+    {
+        i = 2;
+        if (pregunta[i] == pregunta[2])
         {
             points = points + 15;
             pregunta[3].SetActive(true);
             pregunta[2].SetActive(false);
-            q++;
-        }
-        if (pregunta[q] == pregunta[3])
-        {
-            /*if (points <= 45)
-            {
-                SceneManager.LoadScene(7);
-            }*/
         }
     }
-
-    public void PreguntaBuena(int w)
+    public void PreguntaBine1(int i)
     {
-        w = 0;
-        if (pregunta[w] == pregunta[0] && completeScene == false)
+        i = 0;
+        if (pregunta[i] == pregunta[0])
         {
             points = points + 45;
             pregunta[1].SetActive(true);
             pregunta[0].SetActive(false);
-            w++;
         }
-        if (pregunta[w] == pregunta[1] && completeScene == false)
+    }
+    public void PreguntaBien2(int i)
+    {
+        i = 1;
+        if (pregunta[i] == pregunta[1])
         {
             points = points + 45;
             pregunta[2].SetActive(true);
             pregunta[1].SetActive(false);
-            w++;
         }
-        if (pregunta[w] == pregunta[2] && completeScene == false)
+    }
+    public void PreguntaBien3(int i)
+    {
+        i = 2;
+        if (pregunta[i] == pregunta[2])
         {
             points = points + 45;
             pregunta[3].SetActive(true);
             pregunta[2].SetActive(false);
-            w++;
         }
-        if (pregunta[w] == pregunta[3])
+    }
+    public void Final()
+    {
+        if (points < 40)
         {
-            /*if (points <= 135)
-            {
-                SceneManager.LoadScene(6);
-            }*/
+            SceneManager.LoadScene(4);
+        }
+        else if (points == 45)
+        {
+            SceneManager.LoadScene(6);
+        }
+        else
+        {
+            SceneManager.LoadScene(7);
         }
     }
 }
