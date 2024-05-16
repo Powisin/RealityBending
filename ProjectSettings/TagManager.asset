@@ -19,6 +19,8 @@ TagManager:
   - Enemy
   - Screamer
   - Video
+  - Nuve
+  - Stop
   layers:
   - Default
   - TransparentFX

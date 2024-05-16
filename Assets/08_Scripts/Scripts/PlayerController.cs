@@ -9,7 +9,7 @@ using UnityEngine.EventSystems;
 public class PlayerController : MonoBehaviour
 {
 
-    private Rigidbody _rb;
+    public Rigidbody _rb;
     private Animator anim;
     private Vector3 moveInput;
 
@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        //Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()

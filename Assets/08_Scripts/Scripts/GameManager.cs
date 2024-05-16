@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
     public GameObject[] recuerdos;
     public Button exitButton;
     [SerializeField] GameObject videoBoss;
+    [SerializeField] GameObject nuve;
+    [SerializeField] GameObject[] shhh;
+    [SerializeField] GameObject triggerFuera;
 
     [Header("Eleccione")]
     [SerializeField] GameObject[] pregunta;
@@ -54,6 +57,14 @@ public class GameManager : MonoBehaviour
     public void CerrarVideoBoss()
     {
         videoBoss.SetActive(false);
+        nuve.SetActive(true);
+        shhh[0].SetActive(true);
+        shhh[1].SetActive(true);
+        shhh[2].SetActive(true);
+        shhh[3].SetActive(true);
+        triggerFuera.SetActive(false);
+        pregunta[0].SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
     }
 
    /* public void QuitScene()
