@@ -19678,6 +19678,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8484550315926030839, guid: 84a2172deaa81c143bcc4cd48dd3589b,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Elecciones
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484550315926030839, guid: 84a2172deaa81c143bcc4cd48dd3589b,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}

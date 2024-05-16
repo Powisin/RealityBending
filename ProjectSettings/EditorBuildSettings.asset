@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01_Scenes/WinPanel_R.unity
     guid: 1e95eaceec6ac9e4286f720978387cf0
+  - enabled: 1
+    path: Assets/01_Scenes/Elecciones.unity
+    guid: fd5d1d5bdf1528a4d84e3e9f314b8a48
   m_configObjects: {}
