@@ -94,12 +94,30 @@ public class GameManager : MonoBehaviour
     }
     public void PreguntaMal3(int i)
     {
-        i = 2;
-        if (pregunta[i] == pregunta[2])
+
+        if (points > 40)
         {
-            points = points + 10;
-            pregunta[3].SetActive(true);
-            pregunta[2].SetActive(false);
+            i = 2;
+            if (pregunta[i] == pregunta[2])
+            {
+                points = points + 45;
+                pregunta[3].SetActive(true);
+                pregunta[2].SetActive(false);
+            }
+        }
+        else if (points == 45)
+        {
+            i = 2;
+            if (pregunta[i] == pregunta[2])
+            {
+                points = points + 45;
+                pregunta[3].SetActive(true);
+                pregunta[2].SetActive(false);
+            }
+        }
+        else if (points < 40)
+        {
+            SceneManager.LoadScene(4);
         }
     }
     public void Preguntaañañin1(int i)
@@ -124,12 +142,30 @@ public class GameManager : MonoBehaviour
     }
     public void PreguntaAñañin3(int i)
     {
-        i = 2;
-        if (pregunta[i] == pregunta[2])
+
+        if (points > 40)
         {
-            points = points + 15;
-            pregunta[3].SetActive(true);
-            pregunta[2].SetActive(false);
+            i = 2;
+            if (pregunta[i] == pregunta[2])
+            {
+                points = points + 45;
+                pregunta[3].SetActive(true);
+                pregunta[2].SetActive(false);
+            }
+        }
+        else if (points == 45)
+        {
+            i = 2;
+            if (pregunta[i] == pregunta[2])
+            {
+                points = points + 45;
+                pregunta[3].SetActive(true);
+                pregunta[2].SetActive(false);
+            }
+        }
+        else if (points < 40)
+        {
+            SceneManager.LoadScene(4);
         }
     }
     public void PreguntaBine1(int i)
@@ -154,27 +190,38 @@ public class GameManager : MonoBehaviour
     }
     public void PreguntaBien3(int i)
     {
-        i = 2;
-        if (pregunta[i] == pregunta[2])
+        if (points > 40)
         {
-            points = points + 45;
-            pregunta[3].SetActive(true);
-            pregunta[2].SetActive(false);
-        }
-    }
-    public void Final()
-    {
-        if (points < 40)
-        {
-            SceneManager.LoadScene(4);
+            i = 2;
+            if (pregunta[i] == pregunta[2])
+            {
+                points = points + 45;
+                pregunta[3].SetActive(true);
+                pregunta[2].SetActive(false);
+            }
         }
         else if (points == 45)
         {
-            SceneManager.LoadScene(6);
+            i = 2;
+            if (pregunta[i] == pregunta[2])
+            {
+                points = points + 45;
+                pregunta[3].SetActive(true);
+                pregunta[2].SetActive(false);
+            }
         }
-        else
+        else if(points < 40)
         {
-            SceneManager.LoadScene(7);
+            SceneManager.LoadScene(4);
         }
+
+    }
+    public void Ret()
+    {
+            SceneManager.LoadScene(7);
+    }
+    public void Aivl()
+    {
+        SceneManager.LoadScene(6);
     }
 }

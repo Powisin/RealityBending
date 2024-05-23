@@ -49,14 +49,14 @@ public class Spawn_prove : MonoBehaviour
     {
         spawning = true;
 
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(2);
 
 
         for (int i = 0; i < waveC; i++)
         {
             SpawnEnemy(wave);
         }
-        yield return new WaitForSeconds(6);
+        yield return new WaitForSeconds(1);
         enemiesSpawned = 0;
         wave += 1;
         waveCount += 1;
